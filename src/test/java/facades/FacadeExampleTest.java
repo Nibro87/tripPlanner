@@ -1,5 +1,6 @@
 package facades;
 
+import entities.User;
 import utils.EMF_Creator;
 import entities.RenameMe;
 import javax.persistence.EntityManager;
@@ -17,7 +18,7 @@ public class FacadeExampleTest {
 
     private static EntityManagerFactory emf;
     private static FacadeExample facade;
-
+    private static UserFacade userFacade;
     public FacadeExampleTest() {
     }
 
@@ -25,6 +26,7 @@ public class FacadeExampleTest {
     public static void setUpClass() {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
        facade = FacadeExample.getFacadeExample(emf);
+       userFacade = UserFacade.getUserFacade(emf);
     }
 
     @AfterAll
@@ -59,5 +61,18 @@ public class FacadeExampleTest {
     public void testAFacadeMethod() {
         assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
     }
+
+
+    @Test
+    public void testCreateUser(){
+
+        User user = new User("nibro","");
+        User expected = userFacade.createUser(user);
+        User actual = new User("nibro","");
+
+        assertEquals(expected,actual);
+
+    }
+
 
 }

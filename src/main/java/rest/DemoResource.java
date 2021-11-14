@@ -71,7 +71,7 @@ public class DemoResource {
     }
 
     @POST
-    @Path("signup/{userId}")
+    @Path("signup")
     @Produces("application/json")
     @Consumes("application/json")
     public Response addPerson(String user){
