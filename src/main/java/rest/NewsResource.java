@@ -3,8 +3,10 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entities.DTO.ArticleDTO;
 import facades.FacadeExample;
 import utils.EMF_Creator;
+import utils.Env;
 import utils.HttpUtils;
 
 import javax.persistence.EntityManagerFactory;
@@ -30,14 +32,18 @@ public class NewsResource {
         return "{\"msg\":\"News\"}";
     }
 
-@Path("headlines")
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("headlines")
     public String getNews() throws IOException {
+        String url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" +Env.APIKEY;
+       String headlines = HttpUtils.fetchData(url);
+       ArticleDTO articleDTO = GSON.fromJson(headlines,ArticleDTO.class);
 
-        String url = "";
-        HttpUtils httpUtils = new HttpUtils();
 
-
-    return HttpUtils.fetchData(url);
+    return headlines;
 }
 
 
