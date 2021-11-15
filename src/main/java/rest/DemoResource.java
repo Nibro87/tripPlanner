@@ -2,6 +2,9 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import entities.Role;
 import entities.User;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -12,6 +15,7 @@ import javax.persistence.TypedQuery;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
+import errorhandling.API_Exception;
 import facades.UserFacade;
 import utils.EMF_Creator;
 
@@ -74,11 +78,26 @@ public class DemoResource {
     @Path("signup")
     @Produces("application/json")
     @Consumes("application/json")
-    public Response addPerson(String user){
+    public Response addUser(String jsonString){
 
-        User thisUser = GSON.fromJson(user,User.class);
-        thisUser = userFacade.createUser(thisUser);
-        return Response.ok(GSON.toJson(thisUser),"application/json").build();
+        String username;
+        String password;
+
+            JsonObject json = JsonParser.parseString(jsonString).getAsJsonObject();
+            username = json.get("username").getAsString();
+            password = json.get("password").getAsString();
+
+
+
+            User user1 = new User(username,password);
+            Role role = new Role("user");
+            user1.addRole(role);
+            User user = userFacade.createUser(user1);
+
+            JsonObject responseJson = new JsonObject();
+            responseJson.addProperty("username", username);
+
+            return Response.ok(new Gson().toJson(responseJson)).build();
 
 
     }
