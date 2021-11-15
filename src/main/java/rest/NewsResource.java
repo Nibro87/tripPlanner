@@ -33,7 +33,7 @@ public class NewsResource {
 @Path("headlines")
     public String getNews() throws IOException {
 
-        String url = "https://gnews.io/api/v4/top-headlines?token=825b19f5be44d2a1ef7ab1a8caefa2e5&lang=en";
+        String url = "";
         HttpUtils httpUtils = new HttpUtils();
 
 
