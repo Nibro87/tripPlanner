@@ -26,7 +26,7 @@ public class FacadeExampleTest {
     public static void setUpClass() {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
        facade = FacadeExample.getFacadeExample(emf);
-       userFacade = UserFacade.getUserFacade(emf);
+       
     }
 
     @AfterAll
@@ -66,11 +66,7 @@ public class FacadeExampleTest {
     @Test
     public void testCreateUser(){
 
-        User user = new User("nibro","");
-        User expected = userFacade.createUser(user);
-        User actual = new User("nibro","");
 
-        assertEquals(expected,actual);
 
     }
 
