@@ -82,14 +82,15 @@ public class DemoResource {
 
         String username;
         String password;
+        String email;
 
-            JsonObject json = JsonParser.parseString(jsonString).getAsJsonObject();
+        JsonObject json = JsonParser.parseString(jsonString).getAsJsonObject();
             username = json.get("username").getAsString();
             password = json.get("password").getAsString();
+            email = json.get("email").getAsString();
 
 
-
-            User user1 = new User(username,password);
+            User user1 = new User(username,password,email);
             Role role = new Role("user");
             user1.addRole(role);
             User user = userFacade.createUser(user1);

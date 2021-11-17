@@ -1,4 +1,4 @@
-/*package rest;
+package rest;
 
 import entities.User;
 import entities.Role;
@@ -71,11 +71,11 @@ public class LoginEndpointTest {
 
             Role userRole = new Role("user");
             Role adminRole = new Role("admin");
-            User user = new User("user", "test1");
+            User user = new User("user", "test1","test1@mail.com");
             user.addRole(userRole);
-            User admin = new User("admin", "test2");
+            User admin = new User("admin", "test2","test2@mail.com");
             admin.addRole(adminRole);
-            User both = new User("user_admin", "test3");
+            User both = new User("user_admin", "test3","test@3mail.com");
             both.addRole(userRole);
             both.addRole(adminRole);
             em.persist(userRole);
@@ -223,4 +223,4 @@ public class LoginEndpointTest {
 
 }
 
- */
+

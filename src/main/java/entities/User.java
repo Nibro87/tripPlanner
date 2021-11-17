@@ -30,6 +30,10 @@ public class User implements Serializable {
   @Size(min = 1, max = 255)
   @Column(name = "user_pass")
   private String userPass;
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "email")
+  private String email;
   @JoinTable(name = "user_roles", joinColumns = {
           @JoinColumn(name = "user_name", referencedColumnName = "user_name")}, inverseJoinColumns = {
           @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
@@ -54,10 +58,10 @@ public class User implements Serializable {
     return(BCrypt.checkpw(pw,userPass));
   }
 
-  public User(String userName, String userPass) {
+  public User(String userName, String userPass, String email) {
     this.userName = userName;
-
     this.userPass = BCrypt.hashpw(userPass,BCrypt.gensalt());
+    this.email = email;
   }
 
 
