@@ -1,5 +1,6 @@
 package facades;
 
+import entities.Comments;
 import entities.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -55,13 +56,27 @@ public class UserFacade {
             em.close();
         }
 
-
-
-
-
-
     }
 
+
+   public Comments addComments (Comments comments){
+
+       EntityManager em = emf.createEntityManager();
+
+       try{
+
+           em.getTransaction().begin();
+           em.persist(comments);
+           em.getTransaction().commit();
+           return comments;
+
+       }finally {
+           em.close();
+       }
+
+
+
+   }
 
 
 

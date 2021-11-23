@@ -75,5 +75,5 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,gradle!/src/main/java/utils/Environment.java
-!/src/main/java/utils/Environment.java
+
 src/main/java/utils/Environment.java

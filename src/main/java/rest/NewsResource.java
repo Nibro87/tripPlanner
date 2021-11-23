@@ -3,7 +3,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import entities.DTO.ArticleDTO;
+import DTO.ArticleDTO;
 import facades.FacadeExample;
 import utils.EMF_Creator;
 import utils.Environment;
@@ -43,6 +43,21 @@ public class NewsResource {
 
     return headlines;
 }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+
+    public String findBySource(){
+
+        String url = "https://newsapi.org/v2/top-headlines?sources=?&apiKey=" + Environment.APIKEY;
+
+
+        return null;
+    }
+
+
 
 
 }

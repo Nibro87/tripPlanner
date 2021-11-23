@@ -1,5 +1,6 @@
 package facades;
 
+import entities.Comments;
 import entities.User;
 import utils.EMF_Creator;
 import entities.RenameMe;
@@ -26,7 +27,7 @@ public class FacadeExampleTest {
     public static void setUpClass() {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
        facade = FacadeExample.getFacadeExample(emf);
-
+       Comments comments = new Comments();
     }
 
     @AfterAll
@@ -63,12 +64,20 @@ public class FacadeExampleTest {
     }
 
 
-    @Test
-    public void testCreateUser(){
+
+    /*@Test
+    public void addComments() {
+
+        Comments comment = new Comments(2L,"test1");
+        Comments expected = userFacade.addComments(comment);
+       
+       Comments actual = new Comments(2L,"test1");
 
 
-
+        assertEquals(expected,actual);
     }
+*/
+
 
 
 }
