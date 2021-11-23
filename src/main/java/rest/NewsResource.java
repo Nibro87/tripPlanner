@@ -12,6 +12,7 @@ import utils.HttpUtils;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
@@ -48,13 +49,11 @@ public class NewsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
+    public String getBySource(@PathParam("id") String sources) throws IOException {
 
-    public String findBySource(){
+        String url = "https://newsapi.org/v2/top-headlines?apiKey=" + Environment.APIKEY +"&sources="+sources;
 
-        String url = "https://newsapi.org/v2/top-headlines?sources=?&apiKey=" + Environment.APIKEY;
-
-
-        return null;
+        return HttpUtils.fetchData(url);
     }
 
 

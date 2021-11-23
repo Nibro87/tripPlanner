@@ -95,14 +95,14 @@ public class newsEndpointTest {
 
 
     @Test
-    public void testHeadLinesById(){
+    public void getBySource(){
 
         given()
                 .contentType("application/json")
-                .get("/news/headlinesById").then()
+                .get("/news/bbc-news").then()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("totalresults",equalTo(13));
+                .body("totalResults",equalTo(10));
 
 
     }

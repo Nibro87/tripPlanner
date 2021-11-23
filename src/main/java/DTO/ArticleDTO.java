@@ -2,14 +2,16 @@ package DTO;
 
 public class ArticleDTO {
 
-    String id;
-    String name;
-    String author;
-    String title;
-    String url;
-    String urlToImage;
-    String publishedAt;
-    String content;
+ private String status;
+ private SourceDto sourceDto;
+ private String id;
+ private String name;
+ private String author;
+ private String title;
+ private String url;
+ private String urlToImage;
+ private String publishedAt;
+ private String content;
 
     public ArticleDTO(String id, String name, String author, String title, String url, String urlToImage, String publishedAt, String content) {
         this.id = id;
