@@ -1,10 +1,9 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 public class Article implements Serializable {
 
@@ -19,16 +18,18 @@ public class Article implements Serializable {
     String title;
     String publishedAt;
     String description;
+    String Comment;
 
     public Article() {
     }
 
-    public Article(String urlToImage, String url, String title, String publishedAt, String description) {
+    public Article(String urlToImage, String url, String title, String publishedAt, String description, String comment) {
         this.urlToImage = urlToImage;
         this.url = url;
         this.title = title;
         this.publishedAt = publishedAt;
         this.description = description;
+        Comment = comment;
     }
 
     public Long getId() {

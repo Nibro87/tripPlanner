@@ -28,7 +28,7 @@ public class SetupTestUsers {
     User both = new User("user_admin", "test3","test3@email.com");
 
     Comments comments = new Comments("Test message");
-    Article article = new Article("test","test","test","test","test");
+    Article article = new Article("test","test","test","test","test","test");
 
     UserFacade userFacade = UserFacade.getUserFacade(emf);
     userFacade.addComments(comments);

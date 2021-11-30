@@ -1,7 +1,7 @@
 package facades;
 
+import entities.Article;
 import entities.Comments;
-import entities.User;
 import utils.EMF_Creator;
 import entities.RenameMe;
 import javax.persistence.EntityManager;
@@ -13,6 +13,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
 public class FacadeExampleTest {
@@ -20,6 +23,7 @@ public class FacadeExampleTest {
     private static EntityManagerFactory emf;
     private static FacadeExample facade;
     private static UserFacade userFacade;
+    Article article;
     public FacadeExampleTest() {
     }
 
@@ -41,16 +45,7 @@ public class FacadeExampleTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(new RenameMe("Some txt", "More text"));
-            em.persist(new RenameMe("aaa", "bbb"));
 
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
     }
 
     @AfterEach
@@ -62,6 +57,7 @@ public class FacadeExampleTest {
     @Test
     public void testAFacadeMethod() {
         assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
+
     }
 
 
@@ -76,6 +72,18 @@ public class FacadeExampleTest {
 
 
         assertEquals(expected,actual);
+    }
+
+    @Test
+    public void testArticleList(){
+
+        List<Article> actual = userFacade.getAllArticles();
+
+        int expected = 2;
+
+        assertEquals(expected,actual.size());
+
+
     }
 
 

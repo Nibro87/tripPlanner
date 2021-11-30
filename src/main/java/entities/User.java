@@ -36,11 +36,6 @@ public class User implements Serializable {
 
 
 
-
-  @OneToOne
-  Wall wall;
-
-
   public List<String> getRolesAsStrings() {
     if (roleList.isEmpty()) {
       return null;
@@ -64,6 +59,11 @@ public class User implements Serializable {
     this.userPass = BCrypt.hashpw(userPass,BCrypt.gensalt());
     this.email = email;
   }
+
+
+
+
+
 
 
   public String getUserName() {
@@ -93,6 +93,8 @@ public class User implements Serializable {
   public void addRole(Role userRole) {
     roleList.add(userRole);
   }
+
+
 
   @Override
   public String toString() {

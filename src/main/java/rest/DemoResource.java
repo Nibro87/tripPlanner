@@ -116,6 +116,7 @@ public class DemoResource {
         String title;
         String publishedAt;
         String description;
+        String comment;
 
         JsonObject json = JsonParser.parseString(jsonString).getAsJsonObject();
 
@@ -124,8 +125,9 @@ public class DemoResource {
         title = json.get("title").getAsString();
         publishedAt = json.get("publishedAt").getAsString();
         description = json.get("description").getAsString();
+        comment = json.get("comment").getAsString();
 
-        Article article1 = new Article(urlToImage,url,title,publishedAt,description);
+        Article article1 = new Article(urlToImage,url,title,publishedAt,description,comment);
 
         Article article = userFacade.addArticle(article1);
 
@@ -136,5 +138,10 @@ public class DemoResource {
         return Response.ok(new Gson().toJson(responseJson)).build();
     }
 
+    @GET
+    @Path("/allposts")
+    public Response getAllPosts(){
+        return Response.ok(GSON.toJson(userFacade.getAllArticles()),"application/json").build();
+    }
 
 }
