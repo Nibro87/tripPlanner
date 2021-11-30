@@ -1,5 +1,6 @@
 package facades;
 
+import entities.Article;
 import entities.Comments;
 import entities.User;
 import javax.persistence.EntityManager;
@@ -75,9 +76,24 @@ public class UserFacade {
        }
 
 
+    }
 
-   }
+    public Article addArticle(Article article){
 
+        EntityManager em = emf.createEntityManager();
+
+        try{
+            em.getTransaction().begin();
+            em.persist(article);
+            em.getTransaction().commit();
+            return article;
+        }finally {
+            em.close();
+        }
+
+
+
+    }
 
 
 }

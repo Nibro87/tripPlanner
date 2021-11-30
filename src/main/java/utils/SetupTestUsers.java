@@ -1,8 +1,11 @@
 package utils;
 
 
+import entities.Article;
+import entities.Comments;
 import entities.Role;
 import entities.User;
+import facades.UserFacade;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,6 +27,16 @@ public class SetupTestUsers {
     User admin = new User("admin", "test2","test2@email.com");
     User both = new User("user_admin", "test3","test3@email.com");
 
+    Comments comments = new Comments("Test message");
+    Article article = new Article("test","test","test","test","test");
+
+    UserFacade userFacade = UserFacade.getUserFacade(emf);
+    userFacade.addComments(comments);
+    userFacade.addArticle(article);
+
+
+
+
     if(admin.getUserPass().equals("test")||user.getUserPass().equals("test")||both.getUserPass().equals("test"))
       throw new UnsupportedOperationException("You have not changed the passwords");
 
@@ -44,7 +57,7 @@ public class SetupTestUsers {
     System.out.println("Testing user with OK password: " + user.verifyPassword("test"));
     System.out.println("Testing user with wrong password: " + user.verifyPassword("test1"));
     System.out.println("Created TEST Users");
-   
+
   }
 
 }

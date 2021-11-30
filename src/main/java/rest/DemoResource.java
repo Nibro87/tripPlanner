@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import entities.Article;
 import entities.Role;
 import entities.User;
 import java.util.List;
@@ -103,6 +104,37 @@ public class DemoResource {
 
     }
 
+    @POST
+    @Path("share")
+    @Produces("application/json")
+    @Consumes("application/json")
+
+    public Response addArticle(String jsonString){
+
+        String urlToImage;
+        String url;
+        String title;
+        String publishedAt;
+        String description;
+
+        JsonObject json = JsonParser.parseString(jsonString).getAsJsonObject();
+
+        urlToImage = json.get("urlToImage").getAsString();
+        url = json.get("url").getAsString();
+        title = json.get("title").getAsString();
+        publishedAt = json.get("publishedAt").getAsString();
+        description = json.get("description").getAsString();
+
+        Article article1 = new Article(urlToImage,url,title,publishedAt,description);
+
+        Article article = userFacade.addArticle(article1);
+
+        JsonObject responseJson = new JsonObject();
+        responseJson.addProperty("url", url);
+
+
+        return Response.ok(new Gson().toJson(responseJson)).build();
+    }
 
 
 }

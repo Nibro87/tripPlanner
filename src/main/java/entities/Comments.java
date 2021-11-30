@@ -6,21 +6,28 @@ package entities;
 import entities.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Comments {
+public class Comments implements Serializable {
 
+    private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id", nullable = false)
     private Long id;
 
     String message;
 
-    @ManyToOne
-    User user;
+
 
     public Comments() {
+    }
+
+
+    public Comments(String message) {
+        this.message = message;
     }
 
     public Comments(Long id, String message) {
@@ -28,11 +35,6 @@ public class Comments {
         this.message = message;
     }
 
-    public Comments(Long id, String message, User user) {
-        this.id = id;
-        this.message = message;
-        this.user = user;
-    }
 
     public Long getId() {
         return id;
@@ -48,8 +50,11 @@ public class Comments {
         return "Comments{" +
                 "id=" + id +
                 ", message='" + message + '\'' +
-                ", user=" + user +
                 '}';
     }
+
+
+
+
 }
 

@@ -35,9 +35,10 @@ public class User implements Serializable {
   private List<Role> roleList = new ArrayList<>();
 
 
-  @OneToMany(mappedBy = "User",  cascade = CascadeType.PERSIST)
-  private List<Comments> Comments;
 
+
+  @OneToOne
+  Wall wall;
 
 
   public List<String> getRolesAsStrings() {
