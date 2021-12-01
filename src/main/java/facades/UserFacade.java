@@ -100,19 +100,6 @@ public class UserFacade {
     }
 
 
-    public List<Article> getAllArticles() {
-
-        EntityManager em = emf.createEntityManager();
-
-        try{
-            TypedQuery<Article> query = em.createQuery("SELECT a from Article a",Article.class);
-            return query.getResultList();
-
-        }finally {
-            em.close();
-        }
 
 
-
-    }
 }

@@ -8,6 +8,7 @@ import entities.Article;
 import entities.Role;
 import entities.User;
 import java.util.List;
+import java.util.concurrent.Future;
 import javax.annotation.PostConstruct;
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
@@ -17,6 +18,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 import errorhandling.API_Exception;
+import facades.PostFacade;
 import facades.UserFacade;
 import utils.EMF_Creator;
 
@@ -27,6 +29,7 @@ import utils.EMF_Creator;
 public class DemoResource {
 
     private final UserFacade userFacade = UserFacade.getUserFacade(EMF);
+    private final PostFacade postFacade = PostFacade.getPostFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     @Context
@@ -129,7 +132,7 @@ public class DemoResource {
 
         Article article1 = new Article(urlToImage,url,title,publishedAt,description,comment);
 
-        Article article = userFacade.addArticle(article1);
+        Article article = postFacade.addArticle(article1);
 
         JsonObject responseJson = new JsonObject();
         responseJson.addProperty("url", url);
@@ -141,7 +144,18 @@ public class DemoResource {
     @GET
     @Path("/allposts")
     public Response getAllPosts(){
-        return Response.ok(GSON.toJson(userFacade.getAllArticles()),"application/json").build();
+
+        return Response.ok(GSON.toJson(postFacade.getAllArticles()),"application/json").build();
     }
+
+    @GET
+    @Path("/delete")
+    public void deleteArticle(@QueryParam("id") Long id){
+
+        Article article = postFacade.deleteById(id);
+
+
+    }
+
 
 }

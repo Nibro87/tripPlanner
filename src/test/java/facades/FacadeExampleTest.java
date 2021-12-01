@@ -23,6 +23,7 @@ public class FacadeExampleTest {
     private static EntityManagerFactory emf;
     private static FacadeExample facade;
     private static UserFacade userFacade;
+    private static PostFacade postFacade;
     Article article;
     public FacadeExampleTest() {
     }
@@ -32,7 +33,7 @@ public class FacadeExampleTest {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
        facade = FacadeExample.getFacadeExample(emf);
       userFacade = UserFacade.getUserFacade(emf);
-
+      postFacade = PostFacade.getPostFacade(emf);
     }
 
     @AfterAll
@@ -77,7 +78,7 @@ public class FacadeExampleTest {
     @Test
     public void testArticleList(){
 
-        List<Article> actual = userFacade.getAllArticles();
+        List<Article> actual = postFacade.getAllArticles();
 
         int expected = 2;
 
