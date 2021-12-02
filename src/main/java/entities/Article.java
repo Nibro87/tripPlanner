@@ -18,18 +18,18 @@ public class Article implements Serializable {
     String title;
     String publishedAt;
     String description;
-    String Comment;
+    String postArticle;
 
     public Article() {
     }
 
-    public Article(String urlToImage, String url, String title, String publishedAt, String description, String comment) {
+    public Article(String urlToImage, String url, String title, String publishedAt, String description, String postArticle) {
         this.urlToImage = urlToImage;
         this.url = url;
         this.title = title;
         this.publishedAt = publishedAt;
         this.description = description;
-        Comment = comment;
+        this.postArticle = postArticle;
     }
 
     public Long getId() {
@@ -80,6 +80,10 @@ public class Article implements Serializable {
         this.description = description;
     }
 
+    public String getPostArticle() { return postArticle;}
+
+    public void setPostArticle(String postArticle) { this.postArticle = postArticle;}
+
     @Override
     public String toString() {
         return "Article{" +
@@ -89,6 +93,7 @@ public class Article implements Serializable {
                 ", title='" + title + '\'' +
                 ", publishedAt='" + publishedAt + '\'' +
                 ", description='" + description + '\'' +
+                ", postArticle='" + postArticle + '\'' +
                 '}';
     }
 }
