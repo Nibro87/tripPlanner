@@ -1,4 +1,4 @@
-package facades;
+/*package facades;
 
 import entities.Article;
 import entities.Comments;
@@ -91,3 +91,4 @@ public class FacadeExampleTest {
 
 
 }
+*/

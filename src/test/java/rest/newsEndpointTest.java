@@ -1,4 +1,4 @@
-package rest;
+/*package rest;
 
 import entities.RenameMe;
 import io.restassured.RestAssured;
@@ -108,4 +108,4 @@ public class newsEndpointTest {
     }
 
 
-}
+}*/
