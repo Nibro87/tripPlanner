@@ -38,6 +38,7 @@ public class User implements Serializable {
 
 
 
+
   public List<String> getRolesAsStrings() {
     if (roleList.isEmpty()) {
       return null;
@@ -62,7 +63,10 @@ public class User implements Serializable {
     this.email = email;
   }
 
-
+   public User (User user){
+    this.userName = user.getUserName();
+   this.email = user.getEmail();
+  }
 
 
 @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")

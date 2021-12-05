@@ -73,7 +73,7 @@ public class PostFacade {
             List<SharedArticles> sharedArticlesList = query.getResultList();
             List<SharedArticles> ArticlesList = new ArrayList<>();
             for (SharedArticles c : sharedArticlesList) {
-                ArticlesList.add(new SharedArticles(c));
+                ArticlesList.add(new SharedArticles(c, c.getUser()));
             }
 
             return ArticlesList;

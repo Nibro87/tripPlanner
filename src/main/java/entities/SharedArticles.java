@@ -34,7 +34,7 @@ public class SharedArticles implements Serializable {
         this.description = description;
         this.postArticle = postArticle;
     }
-    public SharedArticles(SharedArticles article) {
+    public SharedArticles(SharedArticles article, User user) {
         if(article.getId() != null){
             this.id = article.getId();
         }
@@ -44,6 +44,8 @@ public class SharedArticles implements Serializable {
         this.publishedAt = article.getPublishedAt();
         this.description = article.getDescription();
         this.postArticle = article.getPostArticle();
+        this.user = new User(user);
+
     }
 
     @ManyToOne()
