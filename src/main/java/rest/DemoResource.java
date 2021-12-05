@@ -134,7 +134,11 @@ public class DemoResource {
 
         SharedArticles article1 = new SharedArticles(urlToImage,url,title,publishedAt,description,comment);
 
+        User user = userFacade.getUser("user");
+        article1.setUser(user);
+
         SharedArticles article = postFacade.addArticle(article1);
+
 
         JsonObject responseJson = new JsonObject();
         responseJson.addProperty("url", url);
@@ -145,7 +149,7 @@ public class DemoResource {
 
     @GET
     @Path("/allposts")
-    @RolesAllowed("user")
+
     public Response getAllPosts(){
 
 

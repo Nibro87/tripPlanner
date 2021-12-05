@@ -3,10 +3,12 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
@@ -34,8 +36,6 @@ public class User implements Serializable {
   @ManyToMany
   private List<Role> roleList = new ArrayList<>();
 
-  @OneToOne
-  SharedArticles sharedArticles;
 
 
   public List<String> getRolesAsStrings() {
@@ -62,6 +62,11 @@ public class User implements Serializable {
     this.email = email;
   }
 
+
+
+
+@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+private List<SharedArticles> sharedArticlesList;
 
 
 
@@ -96,7 +101,30 @@ public class User implements Serializable {
     roleList.add(userRole);
   }
 
+  public String getEmail() {return email;}
 
+  public void setEmail(String email) {this.email = email;}
+
+  public List<SharedArticles> getSharedArticlesList() {return sharedArticlesList;}
+
+  public void setSharedArticlesList(List<SharedArticles> sharedArticlesList) {this.sharedArticlesList = sharedArticlesList;}
+
+  public void addArticle(SharedArticles sharedArticles){
+
+    sharedArticlesList.add(sharedArticles);}
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof User)) return false;
+    User user = (User) o;
+    return Objects.equals(getUserName(), user.getUserName()) && Objects.equals(getUserPass(), user.getUserPass()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getRoleList(), user.getRoleList());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getUserName(), getUserPass(), getEmail(), getRoleList());
+  }
 
   @Override
   public String toString() {

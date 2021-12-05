@@ -50,6 +50,20 @@ public class UserFacade {
         return user;
     }
 
+    public User getUser(String username) {
+        EntityManager em = emf.createEntityManager();
+        User user;
+        try {
+            user = em.find(User.class, username);
+        } finally {
+            em.close();
+        }
+        return user;
+    }
+
+
+
+
     public User createUser (User user){
 
         EntityManager em = emf.createEntityManager();
@@ -88,6 +102,7 @@ public class UserFacade {
         EntityManager em = emf.createEntityManager();
 
         try{
+
             em.getTransaction().begin();
             em.persist(article);
             em.getTransaction().commit();

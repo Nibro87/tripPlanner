@@ -7,6 +7,7 @@ import entities.SharedArticles;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostFacade {
@@ -69,8 +70,13 @@ public class PostFacade {
 
         try{
             TypedQuery<SharedArticles> query = em.createQuery("SELECT a from SharedArticles a",SharedArticles.class);
-            return query.getResultList();
+            List<SharedArticles> sharedArticlesList = query.getResultList();
+            List<SharedArticles> ArticlesList = new ArrayList<>();
+            for (SharedArticles c : sharedArticlesList) {
+                ArticlesList.add(new SharedArticles(c));
+            }
 
+            return ArticlesList;
         }finally {
             em.close();
         }

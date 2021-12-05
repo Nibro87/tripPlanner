@@ -29,11 +29,12 @@ public class SetupTestUsers {
     User both = new User("user_admin", "test3","test3@email.com");
 
     Comments comments = new Comments("Test message");
-    SharedArticles article = new SharedArticles("test","test","test","test","test","test");
+
 
     UserFacade userFacade = UserFacade.getUserFacade(emf);
     userFacade.addComments(comments);
-    userFacade.addArticle(article);
+
+
 
 
 
@@ -44,12 +45,17 @@ public class SetupTestUsers {
     em.getTransaction().begin();
     Role userRole = new Role("user");
     Role adminRole = new Role("admin");
+    SharedArticles article = new SharedArticles("test","test","test","test","test","test");
+
+
     user.addRole(userRole);
     admin.addRole(adminRole);
     both.addRole(userRole);
     both.addRole(adminRole);
+
     em.persist(userRole);
     em.persist(adminRole);
+
     em.persist(user);
     em.persist(admin);
     em.persist(both);

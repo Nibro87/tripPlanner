@@ -1,8 +1,11 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class SharedArticles implements Serializable {
@@ -31,8 +34,20 @@ public class SharedArticles implements Serializable {
         this.description = description;
         this.postArticle = postArticle;
     }
+    public SharedArticles(SharedArticles article) {
+        if(article.getId() != null){
+            this.id = article.getId();
+        }
+        this.urlToImage = article.getUrlToImage();
+        this.url = article.getUrl();
+        this.title = article.getTitle();
+        this.publishedAt = article.getPublishedAt();
+        this.description = article.getDescription();
+        this.postArticle = article.getPostArticle();
+    }
 
-    @OneToOne
+    @ManyToOne()
+    @JoinColumn(name = "USER_user_name")
     User user;
 
 
@@ -86,6 +101,10 @@ public class SharedArticles implements Serializable {
 
     public void setPostArticle(String postArticle) { this.postArticle = postArticle;}
 
+    public User getUser() {return user;}
+
+    public void setUser(User user) {this.user = user;}
+
     @Override
     public String toString() {
         return "Article{" +
@@ -98,4 +117,6 @@ public class SharedArticles implements Serializable {
                 ", postArticle='" + postArticle + '\'' +
                 '}';
     }
+
+
 }
