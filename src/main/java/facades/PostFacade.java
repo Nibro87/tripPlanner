@@ -1,7 +1,8 @@
 package facades;
 
-import entities.Article;
+
 import entities.Comments;
+import entities.SharedArticles;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,7 +45,7 @@ public class PostFacade {
     }
 
 
-    public Article addArticle(Article article){
+    public SharedArticles addArticle(SharedArticles article){
 
         EntityManager em = emf.createEntityManager();
 
@@ -62,12 +63,12 @@ public class PostFacade {
     }
 
 
-    public List<Article> getAllArticles() {
+    public List<SharedArticles> getAllArticles() {
 
         EntityManager em = emf.createEntityManager();
 
         try{
-            TypedQuery<Article> query = em.createQuery("SELECT a from Article a",Article.class);
+            TypedQuery<SharedArticles> query = em.createQuery("SELECT a from SharedArticles a",SharedArticles.class);
             return query.getResultList();
 
         }finally {
@@ -78,11 +79,11 @@ public class PostFacade {
 
     }
 
-    public Article deleteById(Long id){
+    public SharedArticles deleteById(Long id){
 
         EntityManager em = emf.createEntityManager();
 
-        Article article = em.find(Article.class,id);
+        SharedArticles article = em.find(SharedArticles.class,id);
 
         if(article != null){
 

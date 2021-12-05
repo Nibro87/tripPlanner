@@ -1,9 +1,10 @@
 package utils;
 
 
-import entities.Article;
+
 import entities.Comments;
 import entities.Role;
+import entities.SharedArticles;
 import entities.User;
 import facades.UserFacade;
 
@@ -28,7 +29,7 @@ public class SetupTestUsers {
     User both = new User("user_admin", "test3","test3@email.com");
 
     Comments comments = new Comments("Test message");
-    Article article = new Article("test","test","test","test","test","test");
+    SharedArticles article = new SharedArticles("test","test","test","test","test","test");
 
     UserFacade userFacade = UserFacade.getUserFacade(emf);
     userFacade.addComments(comments);

@@ -34,6 +34,8 @@ public class User implements Serializable {
   @ManyToMany
   private List<Role> roleList = new ArrayList<>();
 
+  @OneToOne
+  SharedArticles sharedArticles;
 
 
   public List<String> getRolesAsStrings() {

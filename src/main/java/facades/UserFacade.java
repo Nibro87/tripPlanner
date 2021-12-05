@@ -1,7 +1,8 @@
 package facades;
 
-import entities.Article;
+
 import entities.Comments;
+import entities.SharedArticles;
 import entities.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -82,7 +83,7 @@ public class UserFacade {
 
     }
 
-    public Article addArticle(Article article){
+    public SharedArticles addArticle(SharedArticles article){
 
         EntityManager em = emf.createEntityManager();
 

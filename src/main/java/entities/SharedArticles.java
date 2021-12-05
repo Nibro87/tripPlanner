@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Article implements Serializable {
+public class SharedArticles implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,10 +20,10 @@ public class Article implements Serializable {
     String description;
     String postArticle;
 
-    public Article() {
+    public SharedArticles() {
     }
 
-    public Article(String urlToImage, String url, String title, String publishedAt, String description, String postArticle) {
+    public SharedArticles(String urlToImage, String url, String title, String publishedAt, String description, String postArticle) {
         this.urlToImage = urlToImage;
         this.url = url;
         this.title = title;
@@ -32,9 +32,11 @@ public class Article implements Serializable {
         this.postArticle = postArticle;
     }
 
-    public Long getId() {
-        return id;
-    }
+    @OneToOne
+    User user;
+
+
+    public Long getId() { return id;}
 
     public void setId(Long id) {
         this.id = id;

@@ -4,8 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import entities.Article;
+
 import entities.Role;
+import entities.SharedArticles;
 import entities.User;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -109,8 +110,9 @@ public class DemoResource {
 
     @POST
     @Path("share")
-    @Produces("application/json")
-    @Consumes("application/json")
+
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
 
     public Response addArticle(String jsonString){
 
@@ -130,29 +132,33 @@ public class DemoResource {
         description = json.get("description").getAsString();
         comment = json.get("comment").getAsString();
 
-        Article article1 = new Article(urlToImage,url,title,publishedAt,description,comment);
+        SharedArticles article1 = new SharedArticles(urlToImage,url,title,publishedAt,description,comment);
 
-        Article article = postFacade.addArticle(article1);
+        SharedArticles article = postFacade.addArticle(article1);
 
         JsonObject responseJson = new JsonObject();
         responseJson.addProperty("url", url);
 
 
-        return Response.ok(new Gson().toJson(responseJson)).build();
+        return Response.ok(GSON.toJson(responseJson),"application/json").build();
     }
 
     @GET
     @Path("/allposts")
+    @RolesAllowed("user")
     public Response getAllPosts(){
+
+
 
         return Response.ok(GSON.toJson(postFacade.getAllArticles()),"application/json").build();
     }
 
     @GET
     @Path("/delete")
+
     public void deleteArticle(@QueryParam("id") Long id){
 
-        Article article = postFacade.deleteById(id);
+        SharedArticles article = postFacade.deleteById(id);
 
 
     }
