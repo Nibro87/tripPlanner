@@ -1,4 +1,4 @@
-/*package rest;
+package rest;
 
 import entities.User;
 import entities.Role;
@@ -125,6 +125,7 @@ public class LoginEndpointTest {
                 .body("msg", equalTo("Hello anonymous"));
     }
 
+    @Disabled
     @Test
     public void testRestForAdmin() {
         login("admin", "test");
@@ -137,7 +138,7 @@ public class LoginEndpointTest {
                 .statusCode(200)
                 .body("msg", equalTo("Hello to (admin) User: admin"));
     }
-
+    @Disabled
     @Test
     public void testRestForUser() {
         login("user", "test");
@@ -149,7 +150,7 @@ public class LoginEndpointTest {
                 .statusCode(200)
                 .body("msg", equalTo("Hello to User: user"));
     }
-
+    @Disabled
     @Test
     public void testAutorizedUserCannotAccesAdminPage() {
         login("user", "test");
@@ -160,7 +161,7 @@ public class LoginEndpointTest {
                 .get("/info/admin").then() //Call Admin endpoint as user
                 .statusCode(401);
     }
-
+    @Disabled
     @Test
     public void testAutorizedAdminCannotAccesUserPage() {
         login("admin", "test");
@@ -171,7 +172,7 @@ public class LoginEndpointTest {
                 .get("/info/user").then() //Call User endpoint as Admin
                 .statusCode(401);
     }
-
+    @Disabled
     @Test
     public void testRestForMultiRole1() {
         login("user_admin", "test");
@@ -184,7 +185,7 @@ public class LoginEndpointTest {
                 .statusCode(200)
                 .body("msg", equalTo("Hello to (admin) User: user_admin"));
     }
-
+    @Disabled
     @Test
     public void testRestForMultiRole2() {
         login("user_admin", "test");
@@ -223,4 +224,3 @@ public class LoginEndpointTest {
 
 }
 
-*/
