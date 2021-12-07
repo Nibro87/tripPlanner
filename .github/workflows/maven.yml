@@ -15,7 +15,6 @@ on:
 jobs:
   CA2:
 
-  build:
      runs-on: ubuntu-latest
 
     steps:
