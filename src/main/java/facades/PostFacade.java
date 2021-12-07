@@ -3,6 +3,7 @@ package facades;
 
 import entities.Comments;
 import entities.SharedArticles;
+import entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,18 +28,18 @@ public class PostFacade {
     }
 
 
-    public Comments addComments (Comments comments){
+    public Comments addComments(Comments comments) {
 
         EntityManager em = emf.createEntityManager();
 
-        try{
+        try {
 
             em.getTransaction().begin();
             em.persist(comments);
             em.getTransaction().commit();
             return comments;
 
-        }finally {
+        } finally {
             em.close();
         }
 
@@ -46,19 +47,18 @@ public class PostFacade {
     }
 
 
-    public SharedArticles addArticle(SharedArticles article){
+    public SharedArticles addArticle(SharedArticles article) {
 
         EntityManager em = emf.createEntityManager();
-
-        try{
+        ///User user = em.find(User.class,article.getUser());
+        try {
             em.getTransaction().begin();
             em.persist(article);
             em.getTransaction().commit();
             return article;
-        }finally {
+        } finally {
             em.close();
         }
-
 
 
     }
@@ -68,8 +68,8 @@ public class PostFacade {
 
         EntityManager em = emf.createEntityManager();
 
-        try{
-            TypedQuery<SharedArticles> query = em.createQuery("SELECT a from SharedArticles a",SharedArticles.class);
+        try {
+            TypedQuery<SharedArticles> query = em.createQuery("SELECT a from SharedArticles a", SharedArticles.class);
             List<SharedArticles> sharedArticlesList = query.getResultList();
             List<SharedArticles> ArticlesList = new ArrayList<>();
             for (SharedArticles c : sharedArticlesList) {
@@ -77,31 +77,44 @@ public class PostFacade {
             }
 
             return ArticlesList;
-        }finally {
+        } finally {
             em.close();
         }
+
+
+    }
+
+    public SharedArticles deleteById(Long id) {
+
+        EntityManager em = emf.createEntityManager();
+
+        SharedArticles article = em.find(SharedArticles.class, id);
+     ///   User user = em.find(User.class,article.getUser());
+
+            try {
+                em.getTransaction().begin();
+                em.remove(article);
+                em.getTransaction().commit();
+                return article;
+            } finally {
+                em.close();
+
+            }
+
 
 
 
     }
 
-    public SharedArticles deleteById(Long id){
+    public SharedArticles findById (Long id){
 
         EntityManager em = emf.createEntityManager();
 
-        SharedArticles article = em.find(SharedArticles.class,id);
-
-        if(article != null){
-
-            em.getTransaction().begin();
-            em.remove(article);
-            em.getTransaction().commit();
-        }
+        SharedArticles article = em.find(SharedArticles.class, id);
 
 
         return article;
     }
 
+    }
 
-
-}

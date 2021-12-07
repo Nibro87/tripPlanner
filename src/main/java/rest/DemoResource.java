@@ -122,6 +122,7 @@ public class DemoResource {
         String publishedAt;
         String description;
         String comment;
+        String shared_by;
 
         JsonObject json = JsonParser.parseString(jsonString).getAsJsonObject();
 
@@ -131,10 +132,11 @@ public class DemoResource {
         publishedAt = json.get("publishedAt").getAsString();
         description = json.get("description").getAsString();
         comment = json.get("comment").getAsString();
+        shared_by = json.get("sharedby").getAsString();
 
         SharedArticles article1 = new SharedArticles(urlToImage,url,title,publishedAt,description,comment);
-
-        User user = userFacade.getUser("user");
+        String username = shared_by;
+        User user = userFacade.getUser(username);
         article1.setUser(user);
 
         SharedArticles article = postFacade.addArticle(article1);
@@ -149,7 +151,7 @@ public class DemoResource {
 
     @GET
     @Path("/allposts")
-
+    @RolesAllowed("user")
     public Response getAllPosts(){
 
 
@@ -160,12 +162,20 @@ public class DemoResource {
     @GET
     @Path("/delete")
 
+    @Produces(MediaType.APPLICATION_JSON)
     public void deleteArticle(@QueryParam("id") Long id){
 
-        SharedArticles article = postFacade.deleteById(id);
+        //String thisuser = securityContext.getUserPrincipal().getName();
+       //SharedArticles article = postFacade.findById(id);
 
+        ///if(article != null){
+           // if (article.getUser().getUserName().equals(thisuser)){
+        postFacade.deleteById(id);
 
     }
+        }
 
 
-}
+
+
+

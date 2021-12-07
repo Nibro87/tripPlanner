@@ -69,7 +69,7 @@ public class User implements Serializable {
   }
 
 
-@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
 private List<SharedArticles> sharedArticlesList;
 
 

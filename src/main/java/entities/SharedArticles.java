@@ -48,6 +48,26 @@ public class SharedArticles implements Serializable {
 
     }
 
+    public SharedArticles(String urlToImage, String url, String title, String publishedAt, String description, String postArticle, User user) {
+        this.urlToImage = urlToImage;
+        this.url = url;
+        this.title = title;
+        this.publishedAt = publishedAt;
+        this.description = description;
+        this.postArticle = postArticle;
+        this.user = user;
+    }
+
+    public SharedArticles(Long id, String urlToImage, String url, String title, String publishedAt, String description, String postArticle) {
+        this.id = id;
+        this.urlToImage = urlToImage;
+        this.url = url;
+        this.title = title;
+        this.publishedAt = publishedAt;
+        this.description = description;
+        this.postArticle = postArticle;
+    }
+
     @ManyToOne()
     @JoinColumn(name = "USER_user_name")
     User user;
