@@ -69,8 +69,7 @@ public class User implements Serializable {
   }
 
 
-@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
-private List<SharedArticles> sharedArticlesList;
+
 
 
 
@@ -109,13 +108,9 @@ private List<SharedArticles> sharedArticlesList;
 
   public void setEmail(String email) {this.email = email;}
 
-  public List<SharedArticles> getSharedArticlesList() {return sharedArticlesList;}
 
-  public void setSharedArticlesList(List<SharedArticles> sharedArticlesList) {this.sharedArticlesList = sharedArticlesList;}
 
-  public void addArticle(SharedArticles sharedArticles){
 
-    sharedArticlesList.add(sharedArticles);}
 
   @Override
   public boolean equals(Object o) {
