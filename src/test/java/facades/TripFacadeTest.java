@@ -23,7 +23,7 @@ public class TripFacadeTest {
 
 
     @BeforeAll
-    public static void setUpClass(){
+    public static void beforeAll(){
 
         emf = EMF_Creator.createEntityManagerFactoryForTest();
         facade = TripFacade.getTripFacade(emf);
