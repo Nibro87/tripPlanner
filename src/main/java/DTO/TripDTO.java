@@ -21,6 +21,15 @@ public class TripDTO {
     public TripDTO() {
     }
 
+    public TripDTO(String name, String date, String time, String location, String duration, String packingList) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+        this.duration = duration;
+        this.packingList = packingList;
+    }
+
     public long getId() {
         return id;
     }
@@ -75,5 +84,20 @@ public class TripDTO {
 
     public void setPackingList(String packingList) {
         this.packingList = packingList;
+    }
+
+    @Override
+    public String toString() {
+        return "TripDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", location='" + location + '\'' +
+                ", duration='" + duration + '\'' +
+                ", packingList='" + packingList + '\'' +
+                ", userDTOList=" + userDTOList +
+                ", guideDTO=" + guideDTO +
+                '}';
     }
 }

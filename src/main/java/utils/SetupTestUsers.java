@@ -3,6 +3,7 @@ package utils;
 
 
 import entities.Role;
+import entities.Trip;
 import entities.User;
 import facades.UserFacade;
 
@@ -25,8 +26,8 @@ public class SetupTestUsers {
     User user = new User("user", "test1","test1@email.com");
     User admin = new User("admin", "test2","test2@email.com");
     User both = new User("user_admin", "test3","test3@email.com");
-
-
+    Trip trip = new Trip("testname","testdate","testtime","testloc","testdur","testpac");
+    Trip trip2 = new Trip("testname","testdate","testtime","testloc","testdur","testpac");
 
 
     UserFacade userFacade = UserFacade.getUserFacade(emf);
@@ -52,7 +53,8 @@ public class SetupTestUsers {
 
     em.persist(userRole);
     em.persist(adminRole);
-
+    em.persist(trip);
+    em.persist(trip2);
     em.persist(user);
     em.persist(admin);
     em.persist(both);

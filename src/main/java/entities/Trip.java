@@ -37,6 +37,15 @@ public class Trip {
     public Trip() {
     }
 
+    public Trip(String name, String date, String time, String location, String duration, String packingList) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+        this.duration = duration;
+        this.packingList = packingList;
+    }
+
     public long getId() {
         return id;
     }
@@ -107,5 +116,20 @@ public class Trip {
 
     public void setGuide(Guide guide) {
         this.guide = guide;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", location='" + location + '\'' +
+                ", duration='" + duration + '\'' +
+                ", packingList='" + packingList + '\'' +
+                ", userList=" + userList +
+                ", guide=" + guide +
+                '}';
     }
 }
