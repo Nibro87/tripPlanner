@@ -36,6 +36,8 @@ public class User implements Serializable {
   @ManyToMany
   private List<Role> roleList = new ArrayList<>();
 
+  @ManyToMany
+  private List<Trip> tripList;
 
 
 
