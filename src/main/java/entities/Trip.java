@@ -3,10 +3,11 @@ package entities;
 import DTO.TripDTO;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity(name="trips")
-public class Trip {
+public class Trip implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
