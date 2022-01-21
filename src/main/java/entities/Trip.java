@@ -1,5 +1,7 @@
 package entities;
 
+import DTO.TripDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,27 +10,27 @@ public class Trip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name="Trip_name", length=25, nullable = false,unique = false )
+    @Column(name="Trip_name", length=15, nullable = false,unique = false )
     private String name;
 
-    @Column(name="Trip_date", length=25, nullable = false,unique = false)
+    @Column(name="Trip_date", length=15, nullable = false,unique = false)
     private String date;
 
-    @Column(name="Trip_time", length=25, nullable = false,unique = false)
+    @Column(name="Trip_time", length=15, nullable = false,unique = false)
     private String time;
 
-    @Column(name="Trip_location", length=25, nullable = false,unique = false)
+    @Column(name="Trip_location", length=15, nullable = false,unique = false)
     private String location;
 
-    @Column(name="Trip_duration", length=25, nullable = false,unique = false)
+    @Column(name="Trip_duration", length=50, nullable = false,unique = false)
     private String duration;
 
-    @Column(name="Trip_packinglist", length=25, nullable = false,unique = false)
+    @Column(name="Trip_packinglist", length=50, nullable = false,unique = false)
     private String packingList;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "tripList")
     private List<User> userList;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -46,13 +48,19 @@ public class Trip {
         this.packingList = packingList;
     }
 
-    public long getId() {
-        return id;
+    public Trip(TripDTO tripDTO) {
+        this.name = tripDTO.getName();
+        this.date = tripDTO.getDate();
+        this.time = tripDTO.getTime();
+        this.location = tripDTO.getLocation();
+        this.duration = tripDTO.getDuration();
+        this.packingList = tripDTO.getPackingList();
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+
+    public Long getId() {return id;}
+
+    public void setId(Long id) {this.id = id;}
 
     public String getName() {
         return name;

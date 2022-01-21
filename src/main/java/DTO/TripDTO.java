@@ -1,5 +1,7 @@
 package DTO;
 
+import entities.Trip;
+
 import java.util.List;
 
 public class TripDTO {
@@ -29,6 +31,20 @@ public class TripDTO {
         this.duration = duration;
         this.packingList = packingList;
     }
+
+    public TripDTO(Trip trip){
+        if(trip.getId() != null){
+            this.id = trip.getId();
+        }
+
+        this.name = trip.getName();
+        this.date = trip.getDate();
+        this.time = trip.getTime();
+        this.location = trip.getLocation();
+        this.duration = trip.getDuration();
+        this.packingList = trip.getPackingList();
+    }
+
 
     public long getId() {
         return id;

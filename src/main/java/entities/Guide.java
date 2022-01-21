@@ -8,18 +8,18 @@ public class Guide {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "Guide_name",length = 25,nullable = false,unique = false)
+    @Column(name = "Guide_name",length = 15,nullable = false,unique = false)
     private String name;
 
-    @Column(name="Guide_gender",length = 25,nullable = false,unique = false)
+    @Column(name="Guide_gender",length = 10,nullable = false,unique = false)
     private String gender;
 
-    @Column(name="Guide_birthyear",length = 25,nullable = false,unique = false)
+    @Column(name="Guide_birthyear",length = 20,nullable = false,unique = false)
     private String birthYear;
 
-    @Column(name="Guide_profil",length = 25, nullable = false,unique = false)
+    @Column(name="Guide_profil",length = 50, nullable = false,unique = false)
     private String Profile;
 
     @Column(name="Guide_imageurl",length = 25, nullable = false,unique = false)
@@ -31,13 +31,9 @@ public class Guide {
     public Guide() {
     }
 
-    public long getId() {
-        return id;
-    }
+    public Long getId() {return id;}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(Long id) {this.id = id;}
 
     public String getName() {
         return name;

@@ -13,8 +13,7 @@ import javax.persistence.EntityManagerFactory;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TripFacadeTest {
 
@@ -55,7 +54,7 @@ public class TripFacadeTest {
     }
 
     @Test
-    public void testGetAllTrips() throws NotFoundException {
+    public void testGetAllTrips()  {
 
         List<TripDTO> actual = facade.getAllTrips();
         int expected = 1;
@@ -65,5 +64,13 @@ public class TripFacadeTest {
 
     }
 
+    @Test
+    public void allTrips(){
+
+        List<TripDTO> tripDTOList= facade.getAllTrips();
+
+        assertTrue(tripDTOList.size() > 0);
+
+    }
 
 }

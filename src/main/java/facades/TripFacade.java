@@ -1,6 +1,7 @@
 package facades;
 
 import DTO.TripDTO;
+import entities.Trip;
 import errorhandling.NotFoundException;
 
 import javax.persistence.EntityManager;
@@ -40,10 +41,47 @@ public class TripFacade {
             em.close();
         }
 
+    }
+
+
+    public TripDTO deleteById(Long tripId){
+
+        EntityManager em =emf.createEntityManager();
+
+        Trip trip = em.find(Trip.class,tripId);
+
+        if (trip == null){
+            throw new WebApplicationException("no trips with that id");
+        }
+
+        try{
+            em.getTransaction().begin();
+            em.remove(trip);
+            em.getTransaction().commit();
+            return new TripDTO(trip);
+        }finally {
+            em.close();
+        }
 
 
     }
 
+
+    public TripDTO createTrip(TripDTO tripDTO){
+        Trip trip = new Trip(tripDTO);
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            em.persist(trip);
+            em.getTransaction().commit();
+
+        }finally {
+            em.close();
+        }
+
+
+        return new TripDTO(trip);
+    }
 
 
 }
