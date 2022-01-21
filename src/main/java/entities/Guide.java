@@ -1,5 +1,7 @@
 package entities;
 
+import DTO.GuideDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -14,8 +16,9 @@ public class Guide implements Serializable {
     @Column(name = "Guide_name",length = 15,nullable = false,unique = false)
     private String name;
 
-    @Column(name="Guide_gender",length = 10,nullable = false,unique = false)
-    private String gender;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name="Guide_gender")
+    private Gender gender;
 
     @Column(name="Guide_birthyear",length = 20,nullable = false,unique = false)
     private String birthYear;
@@ -32,6 +35,14 @@ public class Guide implements Serializable {
     public Guide() {
     }
 
+    public Guide(GuideDTO guideDTO) {
+        this.name = guideDTO.getName();
+        this.gender = guideDTO.getGender();
+        this.birthYear = guideDTO.getBirthYear();
+        Profile = guideDTO.getProfile();
+        this.imgUrl = guideDTO.getImgUrl();
+    }
+
     public Long getId() {return id;}
 
     public void setId(Long id) {this.id = id;}
@@ -44,13 +55,9 @@ public class Guide implements Serializable {
         this.name = name;
     }
 
-    public String getGender() {
-        return gender;
-    }
+    public Gender getGender() {return gender;}
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public void setGender(Gender gender) {this.gender = gender;}
 
     public String getBirthYear() {
         return birthYear;

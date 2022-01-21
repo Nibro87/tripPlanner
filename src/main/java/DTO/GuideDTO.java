@@ -1,12 +1,15 @@
 package DTO;
 
+import entities.Gender;
+import entities.Guide;
+
 import java.util.List;
 
 public class GuideDTO {
 
     private long id;
     private String name;
-    private String gender;
+    private Gender gender;
     private String birthYear;
     private String profile;
     private String imgUrl;
@@ -15,6 +18,26 @@ public class GuideDTO {
 
 
     public GuideDTO() {
+    }
+
+    public GuideDTO(String name, Gender gender, String birthYear, String profile, String imgUrl) {
+        this.name = name;
+        this.gender = gender;
+        this.birthYear = birthYear;
+        this.profile = profile;
+        this.imgUrl = imgUrl;
+    }
+
+    public GuideDTO(Guide guide) {
+        if (guide.getId() != null){
+            this.id = guide.getId();
+        }
+
+        this.gender = guide.getGender();
+        this.birthYear = guide.getBirthYear();
+        this.profile = guide.getProfile();
+        this.imgUrl = guide.getImgUrl();
+
     }
 
     public long getId() {return id;}
@@ -29,13 +52,9 @@ public class GuideDTO {
         this.name = name;
     }
 
-    public String getGender() {
-        return gender;
-    }
+    public Gender getGender() {return gender;}
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public void setGender(Gender gender) {this.gender = gender;}
 
     public String getBirthYear() {
         return birthYear;
