@@ -22,20 +22,22 @@ public class GuideFacade {
         return instance;
     }
 
-    public GuideDTO createGuide(GuideDTO guideDTO){
+    public Guide createGuide(Guide guide){
 
-        Guide guide = new Guide(guideDTO);
+
         EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
             em.persist(guide);
             em.getTransaction().commit();
+
+            return guide;
         }finally {
             em.close();
         }
 
-        return new GuideDTO(guide);
+
     }
 
 

@@ -43,6 +43,14 @@ public class Guide implements Serializable {
         this.imgUrl = guideDTO.getImgUrl();
     }
 
+    public Guide(String name, Gender gender, String birthYear, String profile, String imgUrl) {
+        this.name = name;
+        this.gender = gender;
+        this.birthYear = birthYear;
+        Profile = profile;
+        this.imgUrl = imgUrl;
+    }
+
     public Long getId() {return id;}
 
     public void setId(Long id) {this.id = id;}
@@ -89,6 +97,19 @@ public class Guide implements Serializable {
 
     public void setTripList(List<Trip> tripList) {
         this.tripList = tripList;
+    }
+
+    @Override
+    public String toString() {
+        return "Guide{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender=" + gender +
+                ", birthYear='" + birthYear + '\'' +
+                ", Profile='" + Profile + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", tripList=" + tripList +
+                '}';
     }
 }
 

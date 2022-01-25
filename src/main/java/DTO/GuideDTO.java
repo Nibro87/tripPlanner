@@ -7,11 +7,11 @@ import java.util.List;
 
 public class GuideDTO {
 
-    private long id;
+    private Long id;
     private String name;
     private Gender gender;
     private String birthYear;
-    private String profile;
+    private String profil;
     private String imgUrl;
 
     private List<TripDTO> tripDTOList;
@@ -24,7 +24,7 @@ public class GuideDTO {
         this.name = name;
         this.gender = gender;
         this.birthYear = birthYear;
-        this.profile = profile;
+        this.profil = profile;
         this.imgUrl = imgUrl;
     }
 
@@ -35,7 +35,7 @@ public class GuideDTO {
 
         this.gender = guide.getGender();
         this.birthYear = guide.getBirthYear();
-        this.profile = guide.getProfile();
+        this.profil = guide.getProfile();
         this.imgUrl = guide.getImgUrl();
 
     }
@@ -65,11 +65,11 @@ public class GuideDTO {
     }
 
     public String getProfile() {
-        return profile;
+        return profil;
     }
 
     public void setProfile(String profile) {
-        this.profile = profile;
+        this.profil = profile;
     }
 
     public String getImgUrl() {

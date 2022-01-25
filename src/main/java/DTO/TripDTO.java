@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TripDTO {
 
-    private long id;
+    private Long id;
 
     private String name;
     private String date;
@@ -44,6 +44,8 @@ public class TripDTO {
         this.duration = trip.getDuration();
         this.packingList = trip.getPackingList();
     }
+
+
 
 
     public long getId() {

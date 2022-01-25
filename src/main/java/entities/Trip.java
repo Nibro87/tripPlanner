@@ -34,7 +34,7 @@ public class Trip implements Serializable {
     @ManyToMany(mappedBy = "tripList")
     private List<User> userList;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Guide guide;
 
     public Trip() {

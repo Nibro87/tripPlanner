@@ -6,15 +6,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import entities.Gender;
+import entities.Guide;
 import facades.GuideFacade;
 import utils.EMF_Creator;
 
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.SecurityContext;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 
 @Path("guide")
 public class GuideResource {
@@ -36,7 +34,7 @@ public class GuideResource {
     }
 
 
-    @POST
+   /* @POST
     @Path("createguide")
     @Produces("application/json")
     @Consumes("application/json")
@@ -59,13 +57,22 @@ public class GuideResource {
         imgUrl = json.get("imgurl").getAsString();
 
 
-        GuideDTO guideDTO = new GuideDTO(name, Gender.valueOf(gender),birthYear,profil,imgUrl);
-        GuideDTO response = guideFacade.createGuide(guideDTO);
+        Guide guide = new Guide(name, Gender.valueOf(gender),birthYear,profil,imgUrl);
+        Guide response = guideFacade.createGuide(guide);
 
         return GSON.toJson(response);
 
-    }
+    }*/
 
+    @POST
+    @Path("/create")
+
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response create(String guide){
+       Guide guide1 = GSON.fromJson(guide,Guide.class);
+        return Response.ok(GSON.toJson(guideFacade.createGuide(guide1)),"application/json").build();
+    }
 
 
 }

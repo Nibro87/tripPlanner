@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import entities.Gender;
 import entities.Guide;
+import entities.Trip;
 import errorhandling.NotFoundException;
 import facades.TripFacade;
 import utils.EMF_Creator;
@@ -87,6 +88,7 @@ public class TripResource {
         return GSON.toJson(response);
 
     }
+
 
 
 
